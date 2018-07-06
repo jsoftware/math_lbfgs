@@ -9,13 +9,17 @@ L-BFGS-B is a code for solving large nonlinear optimization problems with simple
 
 The code can also be used for unconstrained problems and is as efficient for these problems as the earlier limited memory code L-BFGS.
 
+See wiki page: code.jsoftware.com/wiki/Addons/math/lbfgs
 )
 
-VERSION=: ''
+VERSION=: '1.0.0'
 
 RELEASE=: ''
 
 FOLDER=: 'math/lbfgs'
 
 FILES=: 0 : 0
+lbfgs.ijs
+lib/readme.txt
+test/
 )

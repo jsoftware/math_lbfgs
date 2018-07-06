@@ -1,0 +1,4 @@
+NB. init
+
+coclass 'jlbfgs'
+
