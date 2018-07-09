@@ -8,13 +8,13 @@ if. UNAME-:'Android' do.
   liblbfgs=: (jpath'~bin/../libexec/android-libs/',arch,'/liblbfgs.so')
 else.
   ext=. (('Darwin';'Linux') i. <UNAME) pick ;:'dylib so dll'
-  liblbfgs=: jpath '~addons/math/lbfgs/lib/liblbfgs',((-.IF64)#'_32'),'.',ext
+  liblbfgs=: jpath '~addons/math/lbfgs/lib/',(IFRASPI#'raspberry/'),'liblbfgs',((-.IF64)#'_32'),'.',ext
 end.
 )
 
 NB. =========================================================
 checklibrary=: 3 : 0
-if. IFIOS do.
+if. +./ IFIOS,(-.IF64),UNAME-:'Android' do.
   sminfo 'L-BFGS';'The math/lbfgs addon is not available for this platform.' return.
 end.
 if. -. fexist liblbfgs do.
@@ -26,7 +26,7 @@ NB. =========================================================
 NB. get lbfgs binary
 NB. uses routines from pacman
 getbin=: 3 : 0
-if. IFIOS do. return. end.
+if. +./ IFIOS,(-.IF64),UNAME-:'Android' do. return. end.
 require 'pacman'
 path=. 'http://www.jsoftware.com/download/lbfgsbin/100/'
 arg=. HTTPCMD_jpacman_
