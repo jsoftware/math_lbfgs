@@ -13,6 +13,11 @@ end.
 )
 
 NB. =========================================================
+NB. required versions:
+binreq=: 100 NB. binary
+relreq=: 807 NB. J release
+
+NB. =========================================================
 checklibrary=: 3 : 0
 if. +./ IFIOS,(-.IF64),UNAME-:'Android' do.
   sminfo 'L-BFGS';'The math/lbfgs addon is not available for this platform.' return.
@@ -28,7 +33,7 @@ NB. uses routines from pacman
 getbin=: 3 : 0
 if. +./ IFIOS,(-.IF64),UNAME-:'Android' do. return. end.
 require 'pacman'
-path=. 'http://www.jsoftware.com/download/lbfgsbin/100/'
+path=. 'http://www.jsoftware.com/download/lbfgsbin/',(":relreq),'/'
 arg=. HTTPCMD_jpacman_
 tm=. TIMEOUT_jpacman_
 dq=. dquote_jpacman_ f.

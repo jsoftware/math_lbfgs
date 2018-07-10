@@ -12,7 +12,7 @@ The code can also be used for unconstrained problems and is as efficient for the
 See wiki page: code.jsoftware.com/wiki/Addons/math/lbfgs
 )
 
-VERSION=: '1.0.2'
+VERSION=: '1.0.3'
 
 RELEASE=: ''
 
@@ -20,9 +20,8 @@ FOLDER=: 'math/lbfgs'
 
 FILES=: 0 : 0
 lbfgs.ijs
-lib/liblbfgs.dll
-lib/liblbfgs.so
-lib/raspberry/liblbfgs.so
+lib/readme.txt
+lib/raspberry/readme.txt
 test/
 ThirdPartyNotice/
 )
