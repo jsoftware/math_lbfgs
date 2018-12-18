@@ -70,10 +70,55 @@ else.
   spawn_jtask_ y
 end.
 )
-setulb=: ('"',liblbfgs,'" setulb_ ',(IFWIN#'+'),' n *x *x *d *d *d *x *d *d *d *d *d *x *c *x *c *x *x *d')&cd
+setulb=: ('"',liblbfgs,'" setulb_ ',(IFWIN#'+'),' n &x &x &d &d &d &x &d &d &d &d &d &x &c &x &c &x &x &d')&cd
 lbfgs=: ('"',liblbfgs,'" lbfgs_ ',(IFWIN#'+'),' n *x *x *d *d *d *x *d *x *d *d *d *x')&cd
 
 setulb_z_=: setulb_jlbfgs_
 lbfgs_z_=: lbfgs_jlbfgs_
+'ITERCT N M X LB UB NBH F G FACTR PGTOL WA IWA TASK IPRINT CSAVE LSAVE ISAVE DSAVE'=: i. 19
+lbfgsmin=: 1 : 0
+lbfgsret_jlbfgs_ @: (((exeulb_jlbfgs_ @: ((F,G)}~ (0}~ ,&.>@:{.) @: u @: (X&{::))) ` (exeulb_jlbfgs_) `]) @.(('FG',:'NE') i. 2 {. TASK&{::)^:_) @: lbfgssetup_jlbfgs_ "1
+)
+exeulb=: >:&.>@:{. 0} (setulb_jlbfgs_ @: }.)
+
+DEFAULTS=: 7;1e7;(2-2);_1
+lbfgssetup=: 3 : 0
+(0$a:) lbfgssetup y
+:
+if. 32 = 3!:0 y do. 'initvals bounds'=. 2 {. y
+else. bounds=. __ _ #"0~ #initvals=. y
+end.
+assert. ($bounds) -: 2 ,~ $initvals [ 'bounds length error'
+x=. boxxopen x
+assert. 5 > #x [ 'parms length error'
+assert. #@> x [ 'parms not scalars'
+'corr termeps gradeps debug'=. (a:&= {"0 1 ,.&DEFAULTS) 4 {. x
+n=. #initvals
+m=. 3 >. <. corr
+dataarea=. < ,n
+dataarea=. dataarea , < 15!:15 ,m
+dataarea=. dataarea , < 15!:15 initvals
+dataarea=. dataarea , <"(1) 15!:15 bounds
+dataarea=. dataarea , < 15!:15 (0 1 3 2) {~ +/ 2 1 * __ _ ~: bounds
+dataarea=. dataarea , < 15!:15 ,2.2-2.2
+dataarea=. dataarea , < 15!:15 n$2.2-2.2
+dataarea=. dataarea , < 15!:15 ,termeps+2.2-2.2
+dataarea=. dataarea , < 15!:15 ,gradeps+2.2-2.2
+dataarea=. dataarea , < 15!:15 ((n*(2*m)+5) + m * 8 + 11 * m)$2.2-2.2
+dataarea=. dataarea , < 15!:15 (3*n)$2-2
+dataarea=. dataarea , < 15!:15 (60){.'START'
+dataarea=. dataarea , < 15!:15 ,_1
+dataarea=. dataarea , < 15!:15 (60) # ' '
+dataarea=. dataarea , < 15!:15 (4) # 2-2
+dataarea=. dataarea , < 15!:15 (44) # 2-2
+dataarea=. dataarea , < 15!:15 (29) # 2.2-2.2
+if. 0 {:: dataarea=. setulb dataarea do. 'Error executing setulb in lbfgsmin' 13!:8 (8) end.
+(<0) 0} dataarea
+)
+lbfgsret=: 3 : 0
+('CO' -.@:-: 2 {. TASK {:: y);(X{::y);({.F{::y);TASK{::y
+)
+
+lbfgsmin_z_=: lbfgsmin_jlbfgs_
 checklibrary$0
 cocurrent 'base'

@@ -16,6 +16,7 @@ f=. 3 : '(Pa,y) fcopynew PA,y'
 
 f each cutopen 0 : 0
 lbfgs.ijs
+lbfgs-b.txt
 lib/readme.txt
 test/
 )

@@ -2,6 +2,7 @@ NB. lib version
 
 NB. =========================================================
 NB. library:
+NB. First part of this script is making sure the library is loaded
 3 : 0''
 if. UNAME-:'Android' do.
   arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
