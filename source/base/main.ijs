@@ -51,7 +51,7 @@ NB. Get X and  bound information
 if. 32 = 3!:0 y do. 'initvals bounds'=. 2 {. y
 else. bounds=. __ _ #"0~ #initvals=. y
 end.
-assert. ($bounds) -: 2 ,~ $initvals [ 'bounds length error'
+assert. ($bounds) -: 2 , $initvals [ 'bounds length error'
 NB. Get config information from x
 x=. boxxopen x
 assert. 5 > #x [ 'parms length error'
