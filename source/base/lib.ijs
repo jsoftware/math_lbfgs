@@ -6,6 +6,11 @@ NB. First part of this script is making sure the library is loaded
 3 : 0''
 if. UNAME-:'Android' do.
   arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
+  if. IF64 < arch-:'arm64-v8a' do.
+    arch=. 'armeabi-v7a'
+  elseif. IF64 < arch-:'x86_64' do.
+    arch=. 'x86'
+  end.
   liblbfgs=: (jpath'~bin/../libexec/android-libs/',arch,'/liblbfgs.so')
 else.
   ext=. (('Darwin';'Linux') i. <UNAME) pick ;:'dylib so dll'
@@ -41,6 +46,11 @@ dq=. dquote_jpacman_ f.
 to=. liblbfgs_jlbfgs_
 if. UNAME-:'Android' do.
   arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
+  if. IF64 < arch-:'arm64-v8a' do.
+    arch=. 'armeabi-v7a'
+  elseif. IF64 < arch-:'x86_64' do.
+    arch=. 'x86'
+  end.
   fm=. path,'android/libs/',z=. arch,'/liblbfgs.so'
   'res p'=. httpget_jpacman_ fm
   if. res do.
