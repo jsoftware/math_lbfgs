@@ -1,4 +1,3 @@
 NB. init
 
 coclass 'jlbfgs'
-

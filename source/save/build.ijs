@@ -6,7 +6,7 @@ Pa=: jpath '~addons/math/lbfgs/'
 
 mkdir_j_ Pa,'lib'
 
-dat=. readsourcex_jp_ S,'base'
+dat=. readsource_jp_ S,'base'
 dat=. dat,'checklibrary$0',LF
 dat=. dat,'cocurrent ''base''',LF
 dat fwritenew PA,'lbfgs.ijs'
