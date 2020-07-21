@@ -1,3 +1,32 @@
+NB. Adverb to run L-BFGS-B
+NB. u is the function to be minimized.  It must accept a point (i.e. a list of coordinate values) and produce
+NB.  function value; gradient
+NB. where gradient is the list of partial derivatives wrt each coordinate
+NB.
+NB. Invocation: control-parms (u lbfgsmin) starting-point[;bounds]
+NB. starting-point is the initial guess at the solution (shape n)
+NB. bounds is (2,n) table of lower bound,:upper bound (if omitted, __ _ is used)
+NB. control-parms is  [corr-count[;term-eps[;grad-eps[;debug]]]]
+NB.   If any value is omitted (i. e. a: or omitted), the default is used
+NB.  corr-count is the number of correction dimensions (recommended 3-20; default=7)
+NB.  term-eps terminates the search when the answer does not change by more than term-eps ULPs (default 1e7, moderate accuracy)
+NB.  grad_eps terminates when the gradient's largest component is less than grad_eps (default 0, ignore the test)
+NB.  debug selects debug information (see iprint below), default=_1 (no debug info)
+NB.
+NB. result is return code(0=result found, 1=not);best-x;(function value at best-x);(final value of task in the FORTRAN code (string))
+NB.
+NB. The verb created here runs in the user's namespace, where it always has access to u.  The verb is then executed on y[x] when they are given.
+NB.
+NB. Example use:
+NB.    f =. +/@:*:@:(-&2 3) ; 2 * -&2 3   NB. function is (x-2)^2 + (y-3)^2; gradient is 2(x-2), 3(y-3)
+NB.    (f lbfgsmin) 0 0
+NB. +-+---+-+------------------------------------------------------------+
+NB. |0|2 3|0|CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL            |
+NB. +-+---+-+------------------------------------------------------------+
+
+
+The remainder of this file is from the L-BFGS-B authors.
+
 L-BFGS-B is released under the New BSD License (aka Modified BSD License or
 3-clause license)
 

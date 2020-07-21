@@ -12,7 +12,7 @@ The code can also be used for unconstrained problems and is as efficient for the
 See wiki page: code.jsoftware.com/wiki/Addons/math/lbfgs
 )
 
-VERSION=: '1.0.6'
+VERSION=: '1.0.7'
 
 RELEASE=: ''
 
