@@ -12,16 +12,16 @@ The code can also be used for unconstrained problems and is as efficient for the
 See wiki page: code.jsoftware.com/wiki/Addons/math/lbfgs
 )
 
-VERSION=: '1.0.8'
+VERSION=: '1.0.9'
 
-RELEASE=: ''
+RELEASE=: 'j901'
 
 FOLDER=: 'math/lbfgs'
 
 FILES=: 0 : 0
-test
 lbfgs.ijs
 lbfgs-b.txt
 lib/readme.txt
 lib/raspberry/readme.txt
+test/
 )
