@@ -13,7 +13,7 @@ if. UNAME-:'Android' do.
   end.
   liblbfgs=: (jpath'~bin/../libexec/android-libs/',arch,'/liblbfgs.so')
 else.
-  ext=. (('Darwin';'Linux') i. <UNAME) pick ;:'dylib so dll'
+  ext=. (('Darwin';'Win') i. <UNAME) pick ;:'dylib dll so'
   liblbfgs=: jpath '~addons/math/lbfgs/lib/',(IFRASPI#'raspberry/'),'liblbfgs',((-.IF64)#'_32'),'.',ext
 end.
 )
@@ -69,7 +69,7 @@ res=. ''
 fail=. 0
 try.
   fail=. _1-: res=. shellcmd cmd
-  2!:0 ::0:^:(UNAME-:'Linux') 'chmod 644 ', dquote to
+  2!:0 ::0:^:((<UNAME)e.'Linux';'FreeBSD';'OpenBSD') 'chmod 644 ', dquote to
 catch. fail=. 1 end.
 if. fail +. 0 >: fsize to do.
   if. _1-:msg=. freads lg do.
